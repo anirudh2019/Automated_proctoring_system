@@ -1,9 +1,4 @@
 # Student-Attentiveness-Detection
-
-The Mini Project name is student activeness detection
-
-Vasanth Reddy
-K Abhinav
-M Harsha Vardhan
-S Anirudh
-K Prasanth
+Two rules:
+1. Never commit on your main branch(even in your fork copy)
+2. Create differnt branch for different feature(optional)
