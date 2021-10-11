@@ -2,6 +2,7 @@
 IVP mini project
 
 Issues:
-1. Noface count, face_verif and multiple count for each frame happening
-2. press a button to capture for face recogn
-3. Mobile detection
+- RAM is not getting cleared after ending proctoring system
+- Noface count, face_verif and multiple count for each frame happening
+- press a button to capture for face recogn
+- Mobile detection
