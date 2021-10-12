@@ -76,7 +76,12 @@ def head_pose_points(img, rotation_vector, translation_vector, camera_matrix):
     
 
 
-def head_main(img, marks):
+def head_main(frame, marks, copy=False):
+        if copy:
+            img = frame.copy()
+        else:
+            img = frame
+    
         # Camera internals
         size=img.shape
         focal_length = size[1]
@@ -148,3 +153,5 @@ def head_main(img, marks):
         
         cv2.putText(img, str(ang1), tuple(p1), font, 2, (128, 255, 255), 3)
         cv2.putText(img, str(ang2), tuple(x1), font, 2, (255, 255, 128), 3)
+        
+        return img
