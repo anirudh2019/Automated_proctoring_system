@@ -1,7 +1,7 @@
 # ivp-online-proctoring-system
 IVP mini project
 
-Dependencies: (command to install : pip install <library>)
+Dependencies: (command to install : pip install "library")
 - face_recognition
 - imutils
 - mediapipe
