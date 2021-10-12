@@ -1,6 +1,17 @@
 import cv2
 import numpy as np
 import math
+font = cv2.FONT_HERSHEY_SIMPLEX 
+# 3D model points.
+model_points = np.array([
+                            (0.0, 0.0, 0.0),             # Nose tip
+                            (0.0, -330.0, -65.0),        # Chin
+                            (-225.0, 170.0, -135.0),     # Left eye left corner
+                            (225.0, 170.0, -135.0),      # Right eye right corne
+                            (-150.0, -150.0, -125.0),    # Left Mouth corner
+                            (150.0, -150.0, -125.0)      # Right mouth corner
+                        ])
+
 
 def get_2d_points(img, rotation_vector, translation_vector, camera_matrix, val):
     point_3d = []
@@ -31,6 +42,7 @@ def get_2d_points(img, rotation_vector, translation_vector, camera_matrix, val):
     point_2d = np.int32(point_2d.reshape(-1, 2))
     return point_2d
 
+
 def draw_annotation_box(img, rotation_vector, translation_vector, camera_matrix,
                         rear_size=300, rear_depth=0, front_size=500, front_depth=400,
                         color=(255, 255, 0), line_width=2):
@@ -50,7 +62,6 @@ def draw_annotation_box(img, rotation_vector, translation_vector, camera_matrix,
     cv2.line(img, tuple(point_2d[3]), tuple(
         point_2d[8]), color, line_width, cv2.LINE_AA)
     
-    
 def head_pose_points(img, rotation_vector, translation_vector, camera_matrix):
     rear_size = 1
     rear_depth = 0
@@ -63,19 +74,6 @@ def head_pose_points(img, rotation_vector, translation_vector, camera_matrix):
     
     return (x, y)
     
-# face_model = get_face_detector()
-# landmark_model = get_landmark_model()
-
-font = cv2.FONT_HERSHEY_SIMPLEX 
-# 3D model points.
-model_points = np.array([
-                            (0.0, 0.0, 0.0),             # Nose tip
-                            (0.0, -330.0, -65.0),        # Chin
-                            (-225.0, 170.0, -135.0),     # Left eye left corner
-                            (225.0, 170.0, -135.0),      # Right eye right corne
-                            (-150.0, -150.0, -125.0),    # Left Mouth corner
-                            (150.0, -150.0, -125.0)      # Right mouth corner
-                        ])
 
 
 def head_main(img, marks):
@@ -88,10 +86,7 @@ def head_main(img, marks):
                          [0, focal_length, center[1]],
                          [0, 0, 1]], dtype = "double"
                          )
-    #faces = find_faces(img, face_model)
-    #for face in faces:
-        # marks = detect_marks(img, landmark_model, face)
-        # mark_detector.draw_marks(img, marks, color=(0, 255, 0))
+        
         image_points = np.array([
                                 marks[30],     # Nose tip
                                 marks[8],     # Chin
@@ -100,7 +95,9 @@ def head_main(img, marks):
                                 marks[48],     # Left Mouth corner
                                 marks[54]      # Right mouth corner
                             ], dtype="double")
+        
         dist_coeffs = np.zeros((4,1)) # Assuming no lens distortion
+        
         (success, rotation_vector, translation_vector) = cv2.solvePnP(model_points, image_points, camera_matrix, dist_coeffs, flags=cv2.SOLVEPNP_UPNP)
         
         
@@ -136,17 +133,17 @@ def head_main(img, marks):
             
             # print('div by zero error')
         if ang1 >= 48:
-            print('Head down')
+#             print('Head down')
             cv2.putText(img, 'Head down', (30, 30), font, 2, (255, 255, 128), 3)
         elif ang1 <= -48:
-            print('Head up')
+#             print('Head up')
             cv2.putText(img, 'Head up', (30, 30), font, 2, (255, 255, 128), 3)
             
         if ang2 >= 48:
-            print('Head right')
+#             print('Head right')
             cv2.putText(img, 'Head right', (90, 30), font, 2, (255, 255, 128), 3)
         elif ang2 <= -48:
-            print('Head left')
+#             print('Head left')
             cv2.putText(img, 'Head left', (90, 30), font, 2, (255, 255, 128), 3)
         
         cv2.putText(img, str(ang1), tuple(p1), font, 2, (128, 255, 255), 3)
