@@ -168,5 +168,3 @@ def eye_tracking(img, shape, threshold = 75):
     print_eye_pos(img, eyeball_pos_left, eyeball_pos_right)
         
 #     cv2.imshow("image", thresh)
-    
-    return img

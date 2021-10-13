@@ -153,5 +153,4 @@ def head_main(frame, marks, copy=False):
         
         cv2.putText(img, str(ang1), tuple(p1), font, 2, (128, 255, 255), 3)
         cv2.putText(img, str(ang2), tuple(x1), font, 2, (255, 255, 128), 3)
-        
-        return img
+
