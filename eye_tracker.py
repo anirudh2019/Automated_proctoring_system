@@ -127,20 +127,19 @@ def print_eye_pos(img, left, right):
     None.
 
     """
+    text = 'Eyes straight'
     if left == right and left != 0:
-        text = ''
         if left == 1:
-            print('Looking left')
-            text = 'Looking left'
+            #print('Eyes left')
+            text = 'Eyes left'
         elif left == 2:
-            print('Looking right')
-            text = 'Looking right'
+            #print('Eyes right')
+            text = 'Eyes right'
         elif left == 3:
-            print('Looking up')
-            text = 'Looking up'
+            #print('Eyes up')
+            text = 'Eyes up'
         font = cv2.FONT_HERSHEY_SIMPLEX 
-        cv2.putText(img, text, (30, 30), font,  
-                   1, (0, 255, 255), 2, cv2.LINE_AA) 
+    cv2.putText(img, text, (30, 150), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2) 
         
 def eye_tracking(img, shape, threshold = 75):
     

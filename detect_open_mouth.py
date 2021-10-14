@@ -24,8 +24,9 @@ def main_open_mouth(frame, shape):
     mar = mouthMAR
     mouthHull = cv2.convexHull(mouth)
     cv2.drawContours(frame, [mouthHull], -1, (0, 255, 0), 1)
-    cv2.putText(frame, "MAR: {:.2f}".format(mar), (30, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
-    if mar > MOUTH_AR_THRESH:
-        cv2.putText(frame, "Mouth is Open!", (30,60),
-        cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,0,0),2)
+    cv2.putText(frame, "MAR: {:.2f}".format(mar), (30, 90), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
+    if mar >= MOUTH_AR_THRESH:
+        cv2.putText(frame, "Mouth is Open!", (30,120),cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,0,0),2)
+    elif mar < MOUTH_AR_THRESH:
+        cv2.putText(frame, "Mouth is Close!", (30,120),cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,0,0),2)
     return frame
