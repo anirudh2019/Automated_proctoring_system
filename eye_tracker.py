@@ -24,6 +24,7 @@ def eye_on_mask(mask, side, shape):
         left, top, right, and bottommost points of ROI
 
     """
+    
     points = [shape[i] for i in side]
     points = np.array(points, dtype=np.int32)
     mask = cv2.fillConvexPoly(mask, points, 255)
@@ -35,10 +36,16 @@ def eye_on_mask(mask, side, shape):
 
 def find_eyeball_position(end_points, cx, cy):
     """Find and return the eyeball positions, i.e. left or right or top or normal"""
-    x_ratio = (end_points[0] - cx)/(cx - end_points[2])
-    y_ratio = (cy - end_points[1])/(end_points[3] - cy)
+    
+    if(cx != end_points[2]):
+        x_ratio = (end_points[0] - cx)/(cx - end_points[2])
+    if(cy != end_points[3]):
+        y_ratio = (cy - end_points[1])/(end_points[3] - cy)
+    
     if x_ratio > 3:
         return 1
+    elif y_ratio > 3:
+        return 4
     elif x_ratio < 0.33:
         return 2
     elif y_ratio < 0.33:
@@ -138,6 +145,9 @@ def print_eye_pos(img, left, right):
         elif left == 3:
             print('Looking up')
             text = 'Looking up'
+        elif left == 4:
+            print('Looking down')
+            text = 'looking down'
         font = cv2.FONT_HERSHEY_SIMPLEX 
         cv2.putText(img, text, (30, 30), font,  
                    1, (0, 255, 255), 2, cv2.LINE_AA) 
@@ -149,6 +159,7 @@ def eye_tracking(img, shape, threshold = 75):
 
     mask = np.zeros(img.shape[:2], dtype=np.uint8)
     mask, end_points_left = eye_on_mask(mask, left, shape)
+    
     mask, end_points_right = eye_on_mask(mask, right, shape)
     mask = cv2.dilate(mask, kernel, 5)
             
@@ -164,6 +175,7 @@ def eye_tracking(img, shape, threshold = 75):
     thresh = process_thresh(thresh)
         
     eyeball_pos_left = contouring(thresh[:, 0:mid], mid, img, end_points_left)
+    
     eyeball_pos_right = contouring(thresh[:, mid:], mid, img, end_points_right, True)
     print_eye_pos(img, eyeball_pos_left, eyeball_pos_right)
         
