@@ -18,7 +18,9 @@ def print_fps(frame, pTime):
     cTime = time.time()
     fps = 1/(cTime - pTime[0])
     pTime[0] = cTime
+
     cv2.putText(frame, f"fps : {int(fps)}", (30,30),cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,0,0),2)
+
     return frame
 
 def print_faces(frame, faces):
@@ -39,6 +41,7 @@ def register_user(fr, num_pics = 5):  # Here model is Face_recogntion model
     while count<num_pics:  
         ret, frame = cam.read()
         if ret:
+
             cv2.putText(frame, 'Press r to capture image, {}/{} captures done'.format(count,num_pics),(30,60),cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,0,0),2)
             cv2.imshow('Face registration', frame)
         
