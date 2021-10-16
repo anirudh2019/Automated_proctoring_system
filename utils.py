@@ -26,6 +26,10 @@ def print_fps(frame, pTime):
 def print_faces(frame, faces):
     for face in faces:
         cv2.rectangle(frame, face.bbox, (0, 0, 255), 2)
+        if(face.spoof=="real"):
+            cv2.putText(frame,face.spoof,(face.bbox[0]-10,face.bbox[1]), font, 1, (0,255,0), 2)
+        else:
+            cv2.putText(frame,face.spoof,(face.bbox[0]-10,face.bbox[1]), font, 1, (0,0,255), 2)
         cv2.putText(frame, 'name : ' + face.name, (30,60),cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,0,0),2)
         cv2.putText(frame, 'dist : ' +str(face.distance), (30,90),cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,0,0),2)
     return frame
