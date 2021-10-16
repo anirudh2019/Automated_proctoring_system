@@ -135,19 +135,19 @@ def head_main(img, marks):
             # print('div by zero error')
         if ang1 >= 48:
 #             print('Head down')
-            cv2.putText(img, 'Head down', (30,180),cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,0,0),2)
+            cv2.putText(img, 'Head down', (15,115),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0),2)
         elif ang1 <= -48:
 #             print('Head up')
-            cv2.putText(img, 'Head up', (30,180),cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,0,0),2)
+            cv2.putText(img, 'Head up', (15,115),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0),2)
             
         elif ang2 >= 48:
 #             print('Head right')
-            cv2.putText(img, 'Head right', (30,180),cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,0,0),2)
+            cv2.putText(img, 'Head right', (15,115),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0),2)
         elif ang2 <= -48:
 #             print('Head left')
-            cv2.putText(img, 'Head left', (30,180),cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,0,0),2)
+            cv2.putText(img, 'Head left', (15,115),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0),2)
         else:
-            cv2.putText(img, 'Head straight', (30,180),cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,0,0),2)
+            cv2.putText(img, 'Head straight', (15,115),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0),2)
         
         cv2.putText(img, str(ang1), tuple(p1), font, 2, (128, 255, 255), 3)
         cv2.putText(img, str(ang2), tuple(x1), font, 2, (255, 255, 128), 3)

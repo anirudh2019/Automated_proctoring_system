@@ -6,14 +6,15 @@ class Face:
     def __init__(self):
         self.bbox = None
         self.img = None
-        self.name = None
-        self.distance = None
-        self.confidence = None
-        self.shape = None
+        self.name = "Recog: off "
+        self.distance = -1
+        self.confidence = -1
+        self.shape = []
         self.mouth = None
         self.head = None
         self.eye = None
         self.spoof = None
+        self.spoof_score = None
 
 # Crop face based on its bounding box
 def get_face(frame, bbox):

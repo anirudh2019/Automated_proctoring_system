@@ -10,7 +10,7 @@ from detect_open_mouth import main_open_mouth
 from face_spoofing import spoof_detector
 import utils
 
-font = cv2.FONT_HERSHEY_PLAIN 
+font = cv2.FONT_HERSHEY_SIMPLEX 
 pTime = [0]
 
 
@@ -18,7 +18,7 @@ pTime = [0]
 fr = Recognizer(threshold = 0.8)
 
 # Register User
-fr.input_embeddings = utils.register_user(fr, num_pics = 5)
+fr.input_embeddings = utils.register_user(fr, num_pics = 5, skipr = False)
 
 if __name__ == "__main__":
     cap = cv2.VideoCapture(0)
@@ -33,13 +33,12 @@ if __name__ == "__main__":
         if det_alert!="No face": 
             fr.verify_faces(faces)
             spoof_detector(faces)
-            detect_landmarks(frame, faces, module="Dlib")
             if not det_alert:
+                detect_landmarks(frame, faces, module="Dlib")                
                 head_main(frame,faces[0].shape)
                 eye_tracking(frame, faces[0].shape, threshold = 75)
-                main_open_mouth(frame, faces[0].shape)
-                
-        frame = utils.print_faces(frame, faces)        
+                faces[0].mouth = main_open_mouth(frame, faces[0].shape)
+            frame = utils.print_faces(frame, faces)        
         
         cv2.imshow('PROCTORING ON',  frame)
                 

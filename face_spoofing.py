@@ -21,9 +21,8 @@ def spoof_detector(faces):
         # pass the face ROI through the trained liveness detector
         # model to determine if the face is "real" or "fake"
         preds = model.predict(resized_face)[0]
+        face.spoof_score = preds[0]
         if preds> 0.5:
-            label = 'spoof'
-            face.spoof = 'spoof'
+            face.spoof = False
         else:
-            label = 'real'
-            face.spoof = "real"
+            face.spoof = True

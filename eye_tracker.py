@@ -3,6 +3,12 @@ import numpy as np
 left = [36, 37, 38, 39, 40, 41]
 right = [42, 43, 44, 45, 46, 47]
 
+class Eye:
+    def __init__(self):
+        self.x_ratio = None
+        self.y_ratio = None
+        self.status = None
+
 def eye_on_mask(mask, side, shape):
     """
     Create ROI on mask of the size of eyes and also find the extreme points of each eye
@@ -143,10 +149,9 @@ def print_eye_pos(img, left, right):
             #print('eye up')
             text = 'eye up'
         font = cv2.FONT_HERSHEY_SIMPLEX 
-    cv2.putText(img, text, (30,210),cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,0,0),2) 
+    cv2.putText(img, text, (15,85),cv2.FONT_HERSHEY_SIMPLEX , 0.5, (255,0,0),2) 
         
 def eye_tracking(img, shape, threshold = 75):
-    
     thresh = img.copy()
     kernel = np.ones((9, 9), np.uint8)
 
