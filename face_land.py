@@ -10,18 +10,19 @@ saved_model = "models/shape_predictor_68_face_landmarks.dat"
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor(saved_model)
 
-def detect_landmarks(frame, faces, module = "Dlib"):
-    shape = []
-   
+
+def detect_landmarks(frame, faces, module = "Dlib", draw=True):
+    shape = []   
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    
+
     if module == "Dlib":
         # loop over the face detections
         for (i, face) in enumerate(faces):
             # determine the facial landmarks for the face region, then
             # convert the facial landmark (x, y)-coordinates to a NumPy
             # array
-            shape = predictor(gray, face)
+
+            shape = predictor(gray, dlib.rectangle(face.bbox[0], face.bbox[1], face.bbox[0]+face.bbox[2], face.bbox[1]+face.bbox[3]))
             shape = face_utils.shape_to_np(shape)
         
             # loop over the (x, y)-coordinates for the facial landmarks
@@ -32,4 +33,6 @@ def detect_landmarks(frame, faces, module = "Dlib"):
     elif module == "mediapipe":
         ret, shape, frame = face_landmarks_mp(frame)
     
-    return False, shape, frame
+
+    return True, shape, frame
+

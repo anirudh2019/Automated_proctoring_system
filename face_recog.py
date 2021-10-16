@@ -5,7 +5,7 @@ import numpy as np
 
 class Recognizer:
     def __init__(self, threshold = 0.8):
-        self.model = construct_facenet()
+        self.model = tf.keras.models.load_model('models/FaceNet.h5') #construct_facenet()
         self.input_embeddings = None
         self.threshold = threshold
         
