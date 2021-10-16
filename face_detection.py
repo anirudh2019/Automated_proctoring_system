@@ -9,6 +9,10 @@ class Face:
         self.name = None
         self.distance = None
         self.confidence = None
+        self.shape = None
+        self.mouth = None
+        self.head = None
+        self.eye = None
 
 # Crop face based on its bounding box
 def get_face(frame, bbox):

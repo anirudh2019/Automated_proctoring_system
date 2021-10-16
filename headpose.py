@@ -76,12 +76,8 @@ def head_pose_points(img, rotation_vector, translation_vector, camera_matrix):
     
 
 
-def head_main(frame, marks, copy=False):
-        if copy:
-            img = frame.copy()
-        else:
-            img = frame
-    
+def head_main(img, marks):
+        
         # Camera internals
         size=img.shape
         focal_length = size[1]

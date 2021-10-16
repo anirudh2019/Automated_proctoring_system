@@ -28,7 +28,10 @@ def print_faces(frame, faces):
         cv2.rectangle(frame, face.bbox, (0, 0, 255), 2)
         cv2.putText(frame, 'name : ' + face.name, (30,60),cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,0,0),2)
         cv2.putText(frame, 'dist : ' +str(face.distance), (30,90),cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,0,0),2)
+        for (x, y) in face.shape:
+            cv2.circle(frame, (x, y), 2, (0, 255, 0), -1)      
     return frame
+
     
 
 def register_user(fr, num_pics = 5):  # Here model is Face_recogntion model
