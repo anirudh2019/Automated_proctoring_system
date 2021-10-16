@@ -25,6 +25,10 @@ def print_faces(frame, faces):
     for face in faces:
         cv2.rectangle(frame, face.bbox, (0, 0, 255), 2)
         cv2.putText(frame, face.name, (90, 30), font, 1, (0,0,255), 2)
+        if(face.spoof=="real"):
+            cv2.putText(frame,face.spoof,(face.bbox[0]-10,face.bbox[1]), font, 1, (0,255,0), 2)
+        else:
+            cv2.putText(frame,face.spoof,(face.bbox[0]-10,face.bbox[1]), font, 1, (0,0,255), 2)
     return frame
     
 
