@@ -35,8 +35,11 @@ def eye_on_mask(mask, side, shape):
 
 def find_eyeball_position(end_points, cx, cy):
     """Find and return the eyeball positions, i.e. left or right or top or normal"""
-    x_ratio = (end_points[0] - cx)/(cx - end_points[2])
-    y_ratio = (cy - end_points[1])/(end_points[3] - cy)
+    if cx != end_points[2]:
+        x_ratio = (end_points[0] - cx)/(cx - end_points[2])
+    if cy != end_points[3]:
+        y_ratio = (cy - end_points[1])/(end_points[3] - cy)
+        
     if x_ratio > 3:
         return 1
     elif x_ratio < 0.33:
