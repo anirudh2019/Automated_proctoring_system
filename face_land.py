@@ -24,7 +24,8 @@ def detect_landmarks(frame, faces, module = "Dlib"):
             b = y+h if y+h<= real_h else real_h
             shape = predictor(gray, dlib.rectangle(l,t,r,b) )
             face.shape = face_utils.shape_to_np(shape)
+        return frame, None
                 
     elif module == "mediapipe":
-        ret, face.shape, frame = face_landmarks_mp(frame)
-
+        frame, shape = face_landmarks_mp(frame)
+        return frame, shape
