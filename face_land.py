@@ -1,31 +1,61 @@
-from face_land_mp import face_landmarks_mp
-from imutils import face_utils
-import numpy as np
 import cv2
-import dlib
-import utils
+import math
+import mediapipe as mp
+import numpy as np
+mp_face_mesh = mp.solutions.face_mesh
 
-# Facial landmarks predictor
-saved_model = "models/shape_predictor_68_face_landmarks.dat"
-detector = dlib.get_frontal_face_detector()
-predictor = dlib.shape_predictor(saved_model)
+def normalized_to_pixel_coordinates(normalized_x, normalized_y, image_width, image_height):
+    """Converts normalized value pair to pixel coordinates."""
 
-def detect_landmarks(frame, faces, module = "Dlib"):
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    real_h, real_w, c = frame.shape
+    # Checks if the float value is between 0 and 1.
+    def is_valid_normalized_value(value: float) -> bool:
+        return (value > 0 or math.isclose(0, value)) and (value < 1 or math.isclose(1, value))
+
+    if not (is_valid_normalized_value(normalized_x) and is_valid_normalized_value(normalized_y)):
+        # TODO: Draw coordinates even if it's outside of the image bounds.
+        return None
+    x_px = min(math.floor(normalized_x * image_width), image_width - 1)
+    y_px = min(math.floor(normalized_y * image_height), image_height - 1)
+    return x_px, y_px
+
+
+# # Extracting Landmark points
+# print(results.multi_face_landmarks[0].landmark[0])
+# results.multi_face_landmarks[0].landmark[0].x
+
+
+def get_landmarks(image, face_landmarks):
+    landmarks = []
+    image_rows, image_cols, _ = image.shape
+    for pt in face_landmarks:
+        px = normalized_to_pixel_coordinates(pt.x, pt.y, image_cols, image_rows)
+        if px:
+            px = px[0], px[1], pt.z
+            landmarks.append(px)
+    return landmarks   
+
+def detect_landmarks(image, faces): #shouldn't run when multiple faces
+    hland = None
+    if len(faces)!=1:
+        return
+    with mp_face_mesh.FaceMesh(static_image_mode=False, max_num_faces=1, refine_landmarks=True, min_detection_confidence=0.7,
+                               min_tracking_confidence= 0.7) as face_mesh:
     
-    if module == "Dlib":
-        # loop over the face detections
-        for (i, face) in enumerate(faces):
-            x,y,w,h = face.bbox
-            l = x if x>=0 else 0
-            t = y if y>=0 else 0
-            r = x+w if x+w<= real_w else real_w
-            b = y+h if y+h<= real_h else real_h
-            shape = predictor(gray, dlib.rectangle(l,t,r,b) )
-            face.shape = face_utils.shape_to_np(shape)
-        return frame, None
+        # To improve performance, optionally mark the image as not writeable to
+        # pass by reference.
+        image.flags.writeable = False
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        results = face_mesh.process(image)
+
+        # Draw the face mesh annotations on the image.
+        image.flags.writeable = True
+        image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+        
+        if results.multi_face_landmarks:
+            for face_landmarks in results.multi_face_landmarks:
+                faces[0].landmarks = get_landmarks(image, face_landmarks.landmark)
+                hland = np.array([(lm.x, lm.y, lm.z) for lm in face_landmarks.landmark])
+    return hland
                 
-    elif module == "mediapipe":
-        frame, shape = face_landmarks_mp(frame)
-        return frame, shape
+                
+                

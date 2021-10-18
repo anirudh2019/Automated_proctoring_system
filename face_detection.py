@@ -1,15 +1,15 @@
 import cv2
-import numpy
+import numpy as np
 import mediapipe as mp
 
 class Face:
     def __init__(self):
         self.bbox = None
         self.img = None
-        self.name = "Recog: off "
-        self.distance = -1
-        self.confidence = -1
-        self.shape = []
+        self.name = None
+        self.distance = None
+        self.confidence = None
+        self.landmarks = None
         self.mouth = None
         self.head = None
         self.eye = None
@@ -31,10 +31,8 @@ def detect_faces(frame, confidence = 0.7):
     """
     Outputs the frame with detected face, alert_bool and cropped face
     """
-    alert = None
     faces = None
     mp_face_detection = mp.solutions.face_detection
-    mp_drawing = mp.solutions.drawing_utils
     
     with mp_face_detection.FaceDetection(model_selection=0, min_detection_confidence= confidence) as face_detector:
         
@@ -47,14 +45,7 @@ def detect_faces(frame, confidence = 0.7):
         results = face_detector.process(frame)
         frame.flags.writeable = True
         frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
-                        
-    # Absence of any face detection
-    if not results.detections:
-        alert = "No face"
-    # Multiple faces detection
-    elif len(results.detections)>1:
-        alert = "Multiple faces"
-    
+        
     # Get bboxes for detected faces
     if results.detections:
         faces = []
@@ -68,4 +59,4 @@ def detect_faces(frame, confidence = 0.7):
             face.img = get_face(frame, face.bbox)
             faces.append(face)
         
-    return alert, faces
+    return faces

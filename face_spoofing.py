@@ -12,7 +12,6 @@ model = model_from_json(loaded_model_json)
 model.load_weights('models/antispoofing_models/antispoofing_model.h5')
 
 def spoof_detector(faces):
-
     for face in faces:
         x,y,w,h = face.bbox[0],face.bbox[1],face.bbox[2],face.bbox[3]
         resized_face = cv2.resize(face.img,(160,160))
