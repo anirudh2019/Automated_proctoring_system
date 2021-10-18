@@ -2,7 +2,7 @@ import cv2
 import time
 import numpy as np
 import mediapipe as mp
-from face_detection import detect_faces
+from face_detector import detect_faces
 font = cv2.FONT_HERSHEY_SIMPLEX 
 
 def print_fps(frame, pTime):
@@ -12,29 +12,21 @@ def print_fps(frame, pTime):
     cv2.putText(frame, f"FPS : {int(fps)}", (15,30),font, 0.5, (255,0,0),2)
     return frame
 
-def print_faces(frame, faces, mouth_cheat_count, head_cheat_count, facerec_cheat_count, spoof_cheat_count, cheat_frame_count):
+def print_faces(frame, faces):
     for face in faces:
         x,y,w,h = face.bbox
         bool_flag=0;
-        #Face det
+        #Face detection
         cv2.rectangle(frame, face.bbox, (0, 0, 153), 2)
         cv2.putText(frame, "c:"+str(round(face.confidence[0],4)),(x+w+5, y+28), cv2.FONT_HERSHEY_PLAIN, 1, (153,0,0), 1)
         
-        #Face recog
-        if face.name=="Unknown":
-            facerec_cheat_count[0]+=1
-            bool_flag+=1
-            
+        #Face Recognition
         if face.name:
             cv2.putText(frame, face.name, (x, y-5),cv2.FONT_HERSHEY_PLAIN, 1, (204,0,0),2)
             cv2.putText(frame, "d:"+str(round(face.distance,4)),(x+w+5, y+46), cv2.FONT_HERSHEY_PLAIN, 1, (153,0,0), 1)
         
-        #Face spoof
-        if not face.spoof: 
-            spoof_cheat_count[0]+=1
-            bool_flag+=1
-            
-        if face.spoof:
+        #Face Spoofing    
+        if face.spoof!=None:
             cv2.putText(frame,"real",(x+w+5, y+10), cv2.FONT_HERSHEY_PLAIN, 1, (0,255,0), 2) if face.spoof else cv2.putText(frame,"spoof",(x+w+5, y+10), cv2.FONT_HERSHEY_PLAIN, 1, (0,0,255), 2)
             cv2.putText(frame, "spf:"+str(round(face.spoof_score,4)),(x+w+5, y+64), cv2.FONT_HERSHEY_PLAIN, 1, (153,0,0), 1)
         
@@ -44,24 +36,11 @@ def print_faces(frame, faces, mouth_cheat_count, head_cheat_count, facerec_cheat
                 cv2.circle(frame, (x1, y1), 1, (0, 255, 0), -1)
             for (x1, y1,_) in face.landmarks[468:]:
                 cv2.circle(frame, (x1, y1), 1, (0, 128, 255), -1)
-                
-        #head
-        if face.head!="Head Straight":
-            head_cheat_count[0]+=1
-            bool_flag+=1
         
         #Mouth tracker
         if face.mouth:
-            if face.mouth.status=="mouth open":
-                mouth_cheat_count[0]+=1
-                bool_flag+=1
             cv2.putText(frame, "MAR:"+str(round(face.mouth.mar,4)),(x+w+5, y+82), cv2.FONT_HERSHEY_PLAIN, 0.9, (153,0,0), 1)
             cv2.putText(frame, face.mouth.status, (15,55), font, 0.5, (255,0,0),2)
-        
-        
-        if bool_flag>0:
-            cheat_frame_count[0]+=1
-            cv2.putText(frame, "CHEATING",(30, 150), cv2.FONT_HERSHEY_PLAIN, 1, (0,0,255), 2)
         
     return frame
 

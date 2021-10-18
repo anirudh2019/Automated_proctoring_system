@@ -23,7 +23,7 @@ def mouth_aspect_ratio(landmarks):
 MOUTH_AR_THRESH = 0.6
 # (mStart, mEnd) = (49, 68)
 
-def main_open_mouth(frame, faces):
+def mouth_open(frame, faces):
     landmarks = np.array(faces[0].landmarks)[:, :2]
     outer_bottom = [61,146,91,181,84,17,314,405,321,375,291]
     outer_top = [61,185,40,39,37,0,267,269,270,409,291]
