@@ -5,6 +5,7 @@ from face_recog import Recognizer
 from face_spoofing import spoof_detector
 from face_land import detect_landmarks
 from head_pose import headpose_est
+from detect_open_mouth import main_open_mouth
 # from eye_tracker import eye_tracking
 # from detect_open_mouth import main_open_mouth
 import utils
@@ -35,7 +36,7 @@ if __name__ == "__main__":
                 if faces[0].landmarks:
                     headpose_est(frame, faces, hland)
                     # eye_tracking(frame, faces[0].shape, threshold = 75)
-                    # faces[0].mouth = main_open_mouth(frame, faces[0].shape)
+                    faces[0].mouth = main_open_mouth(frame, faces)
 
             frame = utils.print_faces(frame, faces)   
         
