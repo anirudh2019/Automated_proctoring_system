@@ -42,8 +42,10 @@ def detect_cheating_frame(faces,frames):
                 if face.mouth.status=="mouth open":
                     frame.mouth=1
                     bool_flag+=1
-
-    if(bool_flag>1):
+    else:
+        frame.facedet = 1
+        bool_flag+=1
+    if(bool_flag>0):
         frame.cheat = 1
         frame.cheatcount = bool_flag
     else:
