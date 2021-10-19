@@ -9,7 +9,7 @@ from head_pose import headpose_est
 from mouth_detector import mouth_open
 # from eye_tracker import eye_tracking
 from cheating_detector import *
-from plot_graphs import plot_main
+from plot_graphs import *
 
 font = cv2.FONT_HERSHEY_SIMPLEX 
 pTime = [0]
@@ -53,3 +53,4 @@ if __name__ == "__main__":
     plot_main(frames)
     segments = segment_count(frames)
     print_stats(segments)
+    plot_segments(segments)
