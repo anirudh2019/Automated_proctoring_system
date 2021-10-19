@@ -1,18 +1,25 @@
-# ivp-online-proctoring-system
-IVP mini project
+# mini_project_iiita
+mini project
 
-Dependencies: (command to install : pip install "library")
-- imutils
-- mediapipe
-- cv2
 
- 
-Issues:
-Traceback (most recent call last):
-  File "ops.py", line 41, in <module>
-    faces[0].mouth = main_open_mouth(frame, faces)
-  File "c:\Users\Anirudh\mini_project_iiita\detect_open_mouth.py", line 35, in main_open_mouth
-    mouthMAR = mouth_aspect_ratio(landmarks)
-  File "c:\Users\Anirudh\mini_project_iiita\detect_open_mouth.py", line 18, in mouth_aspect_ratio
-    B = dist.euclidean(landmarks[267,:], landmarks[314,:]) # 53, 57 # media(267,314)
-IndexError: index 314 is out of bounds for axis 0 with size 277
+Instructions to run this project
+
+1. we used anaconda environments to manage dependencies for this project so to begin with download anaconda installer from [here](https://www.anaconda.com/products/individual#Downloads) .
+2. create a new environment and install the following dependent python libraries in the new environment using `conda` or `pip` as `pip install "libraryname"` for the following libraries.
+
+```
+cmake
+scipy
+opencv
+dlib
+imutils
+mediapipe
+tensorflow==2.6.0
+```
+
+YOU COULD DO SAME USING A `virtualenv` using python 3.7+\*
+
+3. Now run the main function in the source code `python main.py` to start the proctoring system.
+4. First register yourself on the first screen by pressing `r` to capture you images for 5 times.
+5. Now monitoring will begin and will end after you press the `esc` key .
+6. The reports generated will be stored in the `./results` folder.

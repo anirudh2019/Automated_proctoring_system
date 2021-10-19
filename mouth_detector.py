@@ -40,7 +40,7 @@ def mouth_open(frame, faces):
         mouth_obj.status = "mouth open"
     elif mar < MOUTH_AR_THRESH:
         mouth_obj.status = "mouth close"
-    cv2.putText(frame, mouth_obj.status, (15,135),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0),2)
+    # cv2.putText(frame, mouth_obj.status, (15,135),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0),2)
     # mouthHull = cv2.convexHull(mouth)
     # cv2.drawContours(frame, [mouthHull], -1, (0, 255, 0), 1)
 

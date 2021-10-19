@@ -135,17 +135,17 @@ def headpose_est(frame, faces, hland):
         tempstr="Head Straight"
         if ang2 >= 20 :
             tempstr="Head left"
-            cv2.putText(frame, 'Head left', (15,115),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0),2)
+            cv2.putText(frame, 'Head left', (15,80),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0),2)
         elif ang2 <= -20:
             tempstr="Head right"
-            cv2.putText(frame, 'Head right', (15,115),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0),2)
+            cv2.putText(frame, 'Head right', (15,80),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0),2)
         elif ang1 >= 20:
             tempstr="Head up"
-            cv2.putText(frame, 'Head up', (15,115),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0),2)
+            cv2.putText(frame, 'Head up', (15,80),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0),2)
         elif ang1 <= -10:
             tempstr="Head down"
-            cv2.putText(frame, 'Head down', (15,115),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0),2)
+            cv2.putText(frame, 'Head down', (15,80),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0),2)
         else:
             tempstr="Head Straight"
-            cv2.putText(frame, 'Head straight', (15,115),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0),2)
+            cv2.putText(frame, 'Head straight', (15,80),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0),2)
         return tempstr
