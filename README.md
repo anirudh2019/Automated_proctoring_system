@@ -22,4 +22,5 @@ YOU COULD DO SAME USING A `virtualenv` using python 3.7+\*
 3. Now run the main function in the source code as `python main.py` to start the proctoring system.
 4. First register yourself on the first screen by pressing `r` to capture you images for 5 times.
 5. Now monitoring will begin and it will end after you press the `esc` key .
+
 6. The reports generated will be stored in the `./results` folder.
