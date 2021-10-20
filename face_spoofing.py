@@ -22,6 +22,6 @@ def spoof_detector(faces):
         preds = model.predict(resized_face)[0]
         face.spoof_score = preds[0]
         if preds> 0.5:
-            face.spoof = True #False
+            face.spoof = False#True
         else:
             face.spoof = True
