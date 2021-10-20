@@ -21,12 +21,14 @@ fr = Recognizer(threshold = 0.8)
 fr.input_embeddings = utils.register_user(fr, num_pics = 5, skipr = False)
 
 if __name__ == "__main__":
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture("inhouse_dataset/abhi2x.mp4")
     cv2.namedWindow('PROCTORING ON')
     frames=[]
     while(True):
 
         ret, frame = cap.read()
+        if not ret :
+            break
         frame = utils.print_fps(cv2.flip(frame, 1), pTime)
         
         faces =  detect_faces(frame, confidence = 0.7)
