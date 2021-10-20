@@ -1,4 +1,7 @@
-captures
-results
-__pycache__
-.ipynb_checkpoints
+captures/
+__pycache__/
+.ipynb_checkpoints/
+.vscode/
+*.ipynb
+.gitignore
+old/
