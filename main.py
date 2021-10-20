@@ -21,7 +21,7 @@ fr = Recognizer(threshold = 0.8)
 fr.input_embeddings = utils.register_user(fr, num_pics = 5, skipr = False)
 
 if __name__ == "__main__":
-    cap = cv2.VideoCapture("inhouse_dataset/abhi2x.mp4")
+    cap = cv2.VideoCapture("inhouse_dataset/subject1.avi")
     cv2.namedWindow('PROCTORING ON')
     frames=[]
     while(True):

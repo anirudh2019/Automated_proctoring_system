@@ -47,7 +47,7 @@ def print_faces(frame, faces):
 
 def register_user(fr, num_pics = 5, skipr = False):  # Here model is Face_recogntion model
     user_name = "User"
-    cam = cv2.VideoCapture("inhouse_dataset/abhi2x.mp4")
+    cam = cv2.VideoCapture("inhouse_dataset/subject1.avi")
     cv2.namedWindow('Face registration')
     count = 0
     input_embeddings = {}

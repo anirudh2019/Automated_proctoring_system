@@ -142,7 +142,7 @@ def headpose_est(frame, faces, hland):
         elif ang1 >= 20:
             tempstr="Head up"
             cv2.putText(frame, 'Head up', (15,80),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0),2)
-        elif ang1 <= -10:
+        elif ang1 <= -20: #10
             tempstr="Head down"
             cv2.putText(frame, 'Head down', (15,80),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0),2)
         else:

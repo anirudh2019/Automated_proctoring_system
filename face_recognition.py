@@ -30,7 +30,7 @@ class Recognizer:
         if minimum_distance < self.threshold:
             return str(name), minimum_distance
         else:
-            return "Unknown", minimum_distance
+            return str(name), minimum_distance#"Unknown", minimum_distance
     
     def verify_faces(self, faces):
         for face in faces:
