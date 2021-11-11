@@ -5,3 +5,6 @@ __pycache__/
 *.ipynb
 .gitignore
 old/
+results/
+ignore/
+Tester.ipynb

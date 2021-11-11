@@ -14,11 +14,13 @@ class Mouth:
         self.status = None
 
 def mouth_aspect_ratio(landmarks):
-	A = dist.euclidean(landmarks[37,:], landmarks[84,:]) # 51, 59 # media(37,84)
-	B = dist.euclidean(landmarks[267,:], landmarks[314,:]) # 53, 57 # media(267,314)
-	C = dist.euclidean(landmarks[61,:], landmarks[291,:]) # 49, 55 #media(61,291)
-	mar = (A + B) / (2.0 * C)
-	return mar
+    if landmarks.shape[0] >=314: 
+	    A = dist.euclidean(landmarks[37,:], landmarks[84,:]) # 51, 59 # media(37,84)
+	    B = dist.euclidean(landmarks[267,:], landmarks[314,:]) # 53, 57 # media(267,314)
+	    C = dist.euclidean(landmarks[61,:], landmarks[291,:]) # 49, 55 #media(61,291)
+	    mar = (A + B) / (2.0 * C)
+	    return mar
+    return 0
 
 MOUTH_AR_THRESH = 0.6
 # (mStart, mEnd) = (49, 68)
