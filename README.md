@@ -32,8 +32,7 @@ Our proctoring system has scored 96.22% accuracy on our test dataset.
     </ul><br>
     <img src="https://github.com/anirudh2019/ivp_proctoring_system/blob/main/readme/install1.jpg" alt="install1.jpg">
   </li> 
-  <li>Now download proctorenv.yml from readme folder of this repository.</li>
-  <li>Open anaconda prompt and go to the directory where proctorenv.yml is there.</li>
+  <li>Open anaconda prompt and go to the readme directory of this project where proctorenv.yml is there.</li>
   <li>Type in anaconda prompt: conda env create -f proctorenv.yml</li>
   <li>Now a conda environment called "proctorenv" is created. To activate this env, type: conda activate proctorenv</li>
   <li>After activating proctorenv env, go to the directory which has main.py of this project. Type: python main.py to start the proctoring system.</li>
