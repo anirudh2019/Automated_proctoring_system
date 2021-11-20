@@ -22,23 +22,17 @@ Our proctoring system has scored 96.22% accuracy on our test dataset.
 
 
 Instructions to run this project:
-1. we used anaconda environments to manage dependencies for this project so to begin with download anaconda installer from [here](https://www.anaconda.com/products/individual#Downloads) .
-2. create a new environment and install the following dependent python libraries in the new environment using `conda` or `pip` as `pip install "libraryname"` for the following libraries.
-
-```
-cmake
-scipy
-opencv
-dlib
-imutils
-mediapipe
-tensorflow==2.6.0
-```
-
-YOU COULD DO SAME USING A `virtualenv` using python 3.7+\*
-
-3. Now run the main function in the source code as `python main.py` to start the proctoring system.
-4. First register yourself on the first screen by pressing `r` to capture you images for 5 times.
-5. Now monitoring will begin and it will end after you press the `esc` key .
-
-6. The reports generated will be stored in the `./results` folder.
+1. First download this project. We used anaconda environments to manage dependencies for this project, so download anaconda installer from [here](https://www.anaconda.com/products/individual#Downloads).
+2. Installing Microsoft C++ Build Tools:
+2.1. Download Microsoft C++ Build Tools from [here](https://visualstudio.microsoft.com/visual-cpp-build-tools/).
+2.2. Run the downloaded setup. 
+2.3. When the following window appears, tick “Desktop development with C++” as shown and make sure that the below shown ones are also ticked. Now click on install.
+xxxxxxx
+3. Now download proctorenv.yml from readme folder of this repository. 
+4. Open anaconda prompt and go to the directory where proctorenv.yml is there.
+5. Type in anaconda prompt: conda env create -f proctorenv.yml
+6. Now a conda environment called "proctorenv" is created. To activate this env, type: conda activate proctorenv
+7. After activating proctorenv env, go to the directory which has main.py of this project. Type: python main.py to start the proctoring system.
+8. First register yourself on the first screen by pressing `r` to capture you images for 5 times.
+9. Now proctoring will begin and it will end after you press the `esc` key.
+10. The reports generated will be stored in the `./results` folder.
