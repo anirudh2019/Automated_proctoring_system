@@ -1,10 +1,2 @@
-captures/
 __pycache__/
-.ipynb_checkpoints/
-.vscode/
-*.ipynb
-.gitignore
-old/
 results/
-ignore/
-Tester.ipynb

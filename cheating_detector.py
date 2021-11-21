@@ -69,7 +69,7 @@ def segment_count(frames):
     fps_assumed = 5
 
     # thresholds
-    facedet_cheat_threshold = 60
+    facedet_cheat_threshold = 40
     facerec_cheat_threshold = 30
     head_cheat_threshold = 30
     mouth_cheat_threshold = 30
