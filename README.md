@@ -24,10 +24,10 @@ Our proctoring system has scored 96.22% accuracy on our test dataset.
 ### Setup Instructions
 1. First download this project. We used anaconda environments to manage dependencies for this project, so download anaconda installer from <a href="https://www.anaconda.com/products/individual#Downloads">here</a>.</li>
 2. Installing Microsoft C++ Build Tools:
-  - Download Microsoft C++ Build Tools from <a href="https://visualstudio.microsoft.com/visual-cpp-build-tools/">here</a>.
-  - Run the downloaded setup.
-  - When the following window appears, tick “Desktop development with C++” as shown and make sure that the below shown ones are also ticked. Now click on install.
-  <p align="center"><img src="./assets/install1.jpg" alt="install1.jpg"></p>
+    - Download Microsoft C++ Build Tools from <a href="https://visualstudio.microsoft.com/visual-cpp-build-tools/">here</a>.
+    - Run the downloaded setup.
+    - When the following window appears, tick “Desktop development with C++” as shown and make sure that the below shown ones are also ticked. Now click on install.
+    <p align="center"><img src="./assets/install1.jpg" alt="install1.jpg"></p>
 
 3. Open anaconda prompt and go to the assets directory of this project where proctorenv.yml is there.
 4. Type in anaconda prompt: conda env create -f proctorenv.yml
