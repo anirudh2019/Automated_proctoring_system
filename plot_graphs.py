@@ -1,17 +1,18 @@
-import matplotlib
 import numpy as np
 import time 
 import matplotlib.pyplot as plt
 
 def plot_main(frames):
-    facedet=[]
+    noface=[]
+    multiface=[]
     facerec=[]
     head=[]
     mouth=[]
     spoof=[]
     cheat=[]
     for frame in frames:
-        facedet.append(frame.facedet)
+        noface.append(frame.noface)
+        multiface.append(frame.multiface)
         facerec.append(frame.facerec)
         head.append(frame.head)
         mouth.append(frame.mouth)
@@ -19,41 +20,49 @@ def plot_main(frames):
         cheat.append(frame.cheat)
     
     plt.figure(figsize=(12,20)) 
-    plt.subplot(6,1,1)
-    plt.plot(facedet,color='red')
+    
+    plt.subplot(7,1,1)
+    plt.plot(noface,color='red')
     plt.xlabel('frames') 
     plt.ylabel('cheat status')
-    plt.title("Face Detection")
+    plt.title("Absence of Face")
+
+    plt.subplot(7,1,2)
+    plt.plot(multiface,color='red')
+    plt.xlabel('frames') 
+    plt.ylabel('cheat status')
+    plt.title("Multiple faces")
     
-    plt.subplot(6,1,2)
+    plt.subplot(7,1,3)
     plt.plot(facerec,color='red')
     plt.xlabel('frames') 
     plt.ylabel('cheat status')
-    plt.title("Face Recognition")
+    plt.title("Unauthenticated user")
     
-    plt.subplot(6,1,3)
+    plt.subplot(7,1,4)
     plt.plot(head,color='red')
     plt.xlabel('frames') 
     plt.ylabel('cheat status')
-    plt.title("Head-pose Estimation")
+    plt.title("Staring away from screen")
     
-    plt.subplot(6,1,4)
+    plt.subplot(7,1,5)
     plt.plot(mouth,color='red')
     plt.xlabel('frames') 
     plt.ylabel('cheat status')
-    plt.title("Mouth Open Detection")
+    plt.title("Talking")
     
-    plt.subplot(6,1,5)
+    plt.subplot(7,1,6)
     plt.plot(spoof,color='red')
     plt.xlabel('frames') 
     plt.ylabel('cheat status')
     plt.title("Spoof Detection")
     
-    plt.subplot(6,1,6)
+    plt.subplot(7,1,7)
     plt.plot(cheat,color='red')
     plt.xlabel('frames') 
     plt.ylabel('cheat status')
     plt.title("Estimated cheat probability")
+
     plt.subplots_adjust(hspace = 1.0)
     plt.savefig("results/cheat_frames_"+ time.strftime("%Y%m%d-%H%M%S") + ".png",dpi=300)
     plt.show()
@@ -64,6 +73,7 @@ def cheat_count(segments):
         if(segment.cheat):
             cheat_count+=1
     return cheat_count
+
 def plot_segments(segments):
     x=[]
     y=[]
@@ -74,6 +84,7 @@ def plot_segments(segments):
 
     fps_assumed = 5
     segment_time = 10
+    
     plt.figure(figsize=(12,4)) 
     plt.plot(x,y,'r')
     plt.xlabel('Time Segments')

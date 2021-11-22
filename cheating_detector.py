@@ -3,7 +3,8 @@ class Frame:
         self.cheat = 0
         self.count = 0
         self.cheatcount = 0
-        self.facedet = 0
+        self.noface = 0
+        self.multiface = 0
         self.facerec = 0
         self.head = 0
         self.eye = 0
@@ -22,7 +23,7 @@ def detect_cheating_frame(faces,frames):
     bool_flag=0
     if faces:
         if(len(faces)!=1):
-            frame.facedet = 1
+            frame.multiface = 1
             bool_flag+=1
 
         for face in faces:
@@ -43,8 +44,9 @@ def detect_cheating_frame(faces,frames):
                     frame.mouth=1
                     bool_flag+=1
     else:
-        frame.facedet = 1
+        frame.noface = 1
         bool_flag+=1
+
     if(bool_flag>0):
         frame.cheat = 1
         frame.cheatcount = bool_flag
@@ -60,7 +62,8 @@ def segment_count(frames):
     frame_count = 0
     segment_count=0
     cheat_segment_count=0
-    facedet_cheat_count = 0
+    noface_cheat_count = 0
+    multiface_cheat_count = 0
     facerec_cheat_count = 0
     head_cheat_count = 0
     mouth_cheat_count = 0
@@ -69,18 +72,20 @@ def segment_count(frames):
     fps_assumed = 5
 
     # thresholds
-    facedet_cheat_threshold = 40
+    noface_cheat_threshold = 60
+    multiface_cheat_threshold = 60
     facerec_cheat_threshold = 30
     head_cheat_threshold = 30
     mouth_cheat_threshold = 30
     spoof_cheat_threshold = 30
-    # eye_cheat_count = [0]
 
     segments = []
     for frame in frames:
         frame_count+=1
-        if(frame.facedet):
-            facedet_cheat_count+=1
+        if(frame.noface):
+            noface_cheat_count+=1
+        if(frame.multiface):
+            multiface_cheat_count+=1
         if(frame.facerec):
             facerec_cheat_count+=1
         if(frame.head):
@@ -100,14 +105,15 @@ def segment_count(frames):
             #print(segment)
             segments.append(seg)
 
-            if((facedet_cheat_count>=facedet_cheat_threshold) or (facerec_cheat_count>=facerec_cheat_threshold) or (head_cheat_count>=head_cheat_threshold) or (mouth_cheat_count>=mouth_cheat_threshold) or (spoof_cheat_count>=spoof_cheat_threshold)):
+            if((noface_cheat_count>=noface_cheat_threshold) or (multiface_cheat_count>=multiface_cheat_threshold) or (facerec_cheat_count>=facerec_cheat_threshold) or (head_cheat_count>=head_cheat_threshold) or (mouth_cheat_count>=mouth_cheat_threshold) or (spoof_cheat_count>=spoof_cheat_threshold)):
                 cheat_segment_count+=1
 
-            facedet_cheat_count = 0
-            facerec_cheat_count = 0
+            noface_cheat_count = 0
+            multiface_cheat_count = 0
             spoof_cheat_count = 0
             head_cheat_count = 0
             mouth_cheat_count = 0
+            
     return segments
 
 def print_stats(segments):
