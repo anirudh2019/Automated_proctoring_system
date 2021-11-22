@@ -74,7 +74,7 @@ def cheat_count(segments):
             cheat_count+=1
     return cheat_count
 
-def plot_segments(segments):
+def plot_segments(segments,segment_time = 10):
     x=[]
     y=[]
     n = cheat_count(segments)
@@ -82,9 +82,6 @@ def plot_segments(segments):
         x.append(segment.count)
         y.append(segment.cheat)
 
-    fps_assumed = 5
-    segment_time = 10
-    
     plt.figure(figsize=(12,4)) 
     plt.plot(x,y,'r')
     plt.xlabel('Time Segments')

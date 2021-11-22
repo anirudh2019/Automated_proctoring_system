@@ -31,11 +31,11 @@ def detect_cheating_frame(faces,frames):
                 frame.facerec=1
                 bool_flag+=1
             
-            if not face.spoof:
+            if face.spoof == False:
                 frame.spoof = 1
                 bool_flag+=1
 
-            if face.head!="Head Straight":
+            if face.head and face.head!="Head Straight":
                 frame.head=1
                 bool_flag+=1
 
@@ -57,7 +57,7 @@ def detect_cheating_frame(faces,frames):
     frame.count=len(frames)+1
     return frame
 
-def segment_count(frames):
+def segment_count(frames,segment_time=10,fps_assumed=5):
     # count variables
     frame_count = 0
     segment_count=0
@@ -68,8 +68,6 @@ def segment_count(frames):
     head_cheat_count = 0
     mouth_cheat_count = 0
     spoof_cheat_count = 0
-    segment_time = 10#20
-    fps_assumed = 5
 
     # thresholds
     noface_cheat_threshold = 60
