@@ -22,6 +22,8 @@ from utils import register_user, print_fps, print_faces
 
 font = cv2.FONT_HERSHEY_SIMPLEX 
 pTime = [0]
+fps_assumed = 5
+segment_time = 10
 
 # Register User
 frmodel = loadFaceNet512Model()
@@ -62,6 +64,6 @@ if __name__ == "__main__":
     cv2.destroyAllWindows()
 
     plot_main(frames)
-    segments = segment_count(frames)
+    segments = segment_count(frames,segment_time,fps_assumed)
     print_stats(segments)
-    plot_segments(segments)
+    plot_segments(segments,segment_time)
