@@ -70,12 +70,13 @@ def segment_count(frames,segment_time=10,fps_assumed=5):
     spoof_cheat_count = 0
 
     # thresholds
-    noface_cheat_threshold = 60
-    multiface_cheat_threshold = 60
-    facerec_cheat_threshold = 30
-    head_cheat_threshold = 30
-    mouth_cheat_threshold = 30
-    spoof_cheat_threshold = 30
+    no_of_frames = segment_time*fps_assumed
+    noface_cheat_threshold = 0.3*no_of_frames
+    multiface_cheat_threshold = 0.3*no_of_frames
+    facerec_cheat_threshold = 0.3*no_of_frames
+    head_cheat_threshold = 0.3*no_of_frames
+    mouth_cheat_threshold = 0.3*no_of_frames
+    spoof_cheat_threshold = 0.5*no_of_frames
 
     segments = []
     for frame in frames:
@@ -100,7 +101,6 @@ def segment_count(frames,segment_time=10,fps_assumed=5):
             segment_count+=1
             seg.cheat = cheat_segment_count
             cheat_segment_count=0
-            #print(segment)
             segments.append(seg)
 
             if((noface_cheat_count>=noface_cheat_threshold) or (multiface_cheat_count>=multiface_cheat_threshold) or (facerec_cheat_count>=facerec_cheat_threshold) or (head_cheat_count>=head_cheat_threshold) or (mouth_cheat_count>=mouth_cheat_threshold) or (spoof_cheat_count>=spoof_cheat_threshold)):
@@ -123,4 +123,3 @@ def print_stats(segments):
     print("segment_count = ", len(segments))
     print("cheatings observed  = ", cheat_count)
     print("\n*****************************\n")
-

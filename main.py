@@ -23,11 +23,11 @@ from utils import register_user, print_fps, print_faces
 font = cv2.FONT_HERSHEY_SIMPLEX 
 pTime = [0]
 fps_assumed = 5
-segment_time = 10
+segment_time = 5
 
 # Register User
 frmodel = loadFaceNet512Model()
-input_embeddings, input_im_list = register_user(frmodel, num_pics = 5)
+input_embeddings, input_im_list = register_user(frmodel, num_pics = 1)
 
 if __name__ == "__main__":
     cap = cv2.VideoCapture(0)
@@ -63,7 +63,7 @@ if __name__ == "__main__":
     cap.release()
     cv2.destroyAllWindows()
 
-    plot_main(frames)
+    plot_main(frames,segment_time,fps_assumed)
     segments = segment_count(frames,segment_time,fps_assumed)
     print_stats(segments)
     plot_segments(segments,segment_time)

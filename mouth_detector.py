@@ -16,7 +16,7 @@ def mouth_aspect_ratio(landmarks):
 	    return mar
     return 0
 
-MOUTH_AR_THRESH = 0.53
+MOUTH_AR_THRESH = 0.58
 # (mStart, mEnd) = (49, 68)
 
 def mouth_open(faces):
