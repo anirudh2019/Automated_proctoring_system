@@ -1,3 +1,6 @@
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 # Face detection
 from face_detector import detect_faces
 # Face landmarks detection
@@ -15,7 +18,7 @@ from plot_graphs import *
 # Utils
 import cv2
 from utils import register_user, print_fps, print_faces
-import numpy as np
+
 
 font = cv2.FONT_HERSHEY_SIMPLEX 
 pTime = [0]

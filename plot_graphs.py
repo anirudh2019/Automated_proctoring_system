@@ -23,37 +23,37 @@ def plot_main(frames):
     
     plt.subplot(7,1,1)
     plt.plot(noface,color='red')
-    plt.xlabel('frames') 
+    # plt.xlabel('frames') 
     plt.ylabel('cheat status')
     plt.title("Absence of Face")
 
     plt.subplot(7,1,2)
     plt.plot(multiface,color='red')
-    plt.xlabel('frames') 
+    # plt.xlabel('frames') 
     plt.ylabel('cheat status')
     plt.title("Multiple faces")
     
     plt.subplot(7,1,3)
     plt.plot(facerec,color='red')
-    plt.xlabel('frames') 
+    # plt.xlabel('frames') 
     plt.ylabel('cheat status')
     plt.title("Unauthenticated user")
     
     plt.subplot(7,1,4)
     plt.plot(head,color='red')
-    plt.xlabel('frames') 
+    # plt.xlabel('frames') 
     plt.ylabel('cheat status')
     plt.title("Staring away from screen")
     
     plt.subplot(7,1,5)
     plt.plot(mouth,color='red')
-    plt.xlabel('frames') 
+    # plt.xlabel('frames') 
     plt.ylabel('cheat status')
     plt.title("Talking")
     
     plt.subplot(7,1,6)
     plt.plot(spoof,color='red')
-    plt.xlabel('frames') 
+    # plt.xlabel('frames') 
     plt.ylabel('cheat status')
     plt.title("Spoof Detection")
     

@@ -128,18 +128,18 @@ def headpose_est(frame, faces):
         # For measuring: val = [0, 0, 15, 15] ; p1, p2, x1, x2
         p1,p2 = head_pose_points(frame, rotation_vector, translation_vector, camera_matrix, val = [0,0,15,15],dir="vert")
         x1, x2 = head_pose_points(frame, rotation_vector, translation_vector, camera_matrix,val = [0,0,15,15],dir="horiz") 
-              
-        try:
+
+        if (p2[0] - p1[0]) == 0:
+            ang1 = 90
+        else:
             m = (p2[1] - p1[1])/(p2[0] - p1[0])
             ang1 = int(math.degrees(math.atan(m)))
-        except:
-            ang1 = 90
-        
-        try:
+
+        if (x2[0] - x1[0]) == 0:
+            ang2 = 90
+        else:
             m = (x2[1] - x1[1])/(x2[0] - x1[0])
             ang2 = int(math.degrees(math.atan(-1/m)))
-        except:
-            ang2 = 90
         
         tempstr="Head Straight"
         hdir = None

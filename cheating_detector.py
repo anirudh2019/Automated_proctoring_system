@@ -121,6 +121,8 @@ def print_stats(segments):
     for segment in segments:
         if(segment.cheat):
             cheat_count+=1
-    print("#segment_count = ", len(segments))
-    print("#cheatings observed  = ", cheat_count)
+    print("\n*****************************\n")
+    print("segment_count = ", len(segments))
+    print("cheatings observed  = ", cheat_count)
+    print("\n*****************************\n")
 
