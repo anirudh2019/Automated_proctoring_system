@@ -18,7 +18,7 @@ from plot_graphs import *
 # Utils
 import cv2
 from utils import register_user, print_fps, print_faces
-
+from testing import *
 
 font = cv2.FONT_HERSHEY_SIMPLEX 
 pTime = [0]
@@ -66,4 +66,14 @@ if __name__ == "__main__":
     plot_main(frames,segment_time,fps_assumed)
     segments = segment_count(frames,segment_time,fps_assumed)
     print_stats(segments)
-    plot_segments(segments,segment_time)
+    plot_segments(segments,segment_time,[])
+
+    # Uncomment for Testing
+    # length_of_video = 300
+    # fps = 20
+    # data_path = './filename.txt'
+    # input_text = input_data(data_path,fps)
+    # original = testing_accuracy(length_of_video,fps,fps_assumed,segment_time,input_text)
+    # plot_segments(segments,segment_time,original)
+    # detected = detected_cheating(segments)
+    # acc,prec,recl,f1 = get_accuracy(original,detected)
