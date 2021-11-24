@@ -18,19 +18,19 @@ from plot_graphs import *
 # Utils
 import cv2
 from utils import register_user, print_fps, print_faces
-
+from testing import *
 
 font = cv2.FONT_HERSHEY_SIMPLEX 
 pTime = [0]
 fps_assumed = 5
 segment_time = 5
-
+input_dir = 0
 # Register User
 frmodel = loadFaceNet512Model()
-input_embeddings, input_im_list = register_user(frmodel, num_pics = 1)
+input_embeddings, input_im_list = register_user(frmodel,input_dir)
 
 if __name__ == "__main__":
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(input_dir)
     cv2.namedWindow('PROCTORING ON')
     frames=[]
     while(True):
@@ -66,4 +66,13 @@ if __name__ == "__main__":
     plot_main(frames,segment_time,fps_assumed)
     segments = segment_count(frames,segment_time,fps_assumed)
     print_stats(segments)
-    plot_segments(segments,segment_time)
+    plot_segments(segments,segment_time,[])
+
+    # Uncomment for Testing
+    # length_of_video = 306
+    # fps = 15
+    # data_path = './filename.txt'
+    # original = testing_accuracy(data_path,segment_time*fps_assumed)
+    # plot_segments(segments,segment_time,original)
+    # detected = detected_cheating(segments)
+    # acc,prec,recl,f1 = get_accuracy(original,detected)

@@ -1,6 +1,7 @@
 import numpy as np
 import time 
 import matplotlib.pyplot as plt
+from testing import *
 
 def print_list(items):
     for item in items:
@@ -71,16 +72,17 @@ def cheat_count(segments):
             cheat_count+=1
     return cheat_count
 
-def plot_segments(segments,segment_time = 10):
+def plot_segments(segments,segment_time,original=[]):
     x=[]
-    y=[]
+    detected=[]
     n = cheat_count(segments)
     for segment in segments:
         x.append(segment.count)
-        y.append(segment.cheat)
+        detected.append(segment.cheat)
 
     plt.figure(figsize=(12,4)) 
-    plt.step(y,'r')
+    plt.step(detected,'r')
+    plt.step(original,'b')
     plt.yticks([0,1])
     plt.xticks(x)
     plt.xlabel('Time Segments')
@@ -90,4 +92,4 @@ def plot_segments(segments,segment_time = 10):
     plt.savefig("results/cheating_detection_"+ time.strftime("%Y%m%d-%H%M%S") + ".png",dpi=300)
     plt.show()
     print(x)
-    print(y)
+    print(detected)
