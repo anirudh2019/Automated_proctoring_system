@@ -24,13 +24,13 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 pTime = [0]
 fps_assumed = 5
 segment_time = 5
-
+input_dir = 0
 # Register User
 frmodel = loadFaceNet512Model()
-input_embeddings, input_im_list = register_user(frmodel, num_pics = 1)
+input_embeddings, input_im_list = register_user(frmodel,input_dir)
 
 if __name__ == "__main__":
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(input_dir)
     cv2.namedWindow('PROCTORING ON')
     frames=[]
     while(True):
@@ -69,11 +69,10 @@ if __name__ == "__main__":
     plot_segments(segments,segment_time,[])
 
     # Uncomment for Testing
-    # length_of_video = 300
-    # fps = 20
+    # length_of_video = 306
+    # fps = 15
     # data_path = './filename.txt'
-    # input_text = input_data(data_path,fps)
-    # original = testing_accuracy(length_of_video,fps,fps_assumed,segment_time,input_text)
+    # original = testing_accuracy(data_path,segment_time*fps_assumed)
     # plot_segments(segments,segment_time,original)
     # detected = detected_cheating(segments)
     # acc,prec,recl,f1 = get_accuracy(original,detected)

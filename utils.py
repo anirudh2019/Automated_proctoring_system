@@ -46,17 +46,16 @@ def print_faces(frame, faces):
             cv2.putText(frame, "MAR:"+str(round(face.mouth.mar,4)),(x+w+5, y+82), cv2.FONT_HERSHEY_PLAIN, 0.9, (153,0,0), 1)
             cv2.putText(frame, face.mouth.status, (15,55), font, 0.5, (255,0,0),2)
 
-def register_user(frmodel, num_pics = 5):
-    cam = cv2.VideoCapture(0)
+def register_user(frmodel,input_dir):
+    cam = cv2.VideoCapture(input_dir)
     cv2.namedWindow('Face registration')
-    count = 0
     input_embeddings = []
     input_im_list = []
 
-    while count<num_pics:  
+    while cam.isOpened():  
         ret, frame = cam.read()
         if ret:
-            cv2.putText(frame, 'Press r to capture image, {}/{} captures done'.format(count,num_pics),(30,60),cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,0,0),2)
+            cv2.putText(frame, 'Press r to capture image' ,(30,60),cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,0,0),2)
             cv2.imshow('Face registration', frame)
         
             if cv2.waitKey(1) & 0xFF == ord('r'):
@@ -71,11 +70,9 @@ def register_user(frmodel, num_pics = 5):
                     face_img = faces[0].img
                     input_im_list.append(face_img)
                     input_embeddings.append(faces[0].embedding)
-                    count+=1
-                    # saving image for reference
-                    cv2.imwrite("captures/{}.jpg".format(count), face_img)
+                    break
         else:
-#             print("Camera not available, close any other apps using the webcam and try again")
+            #print("Camera not available, close any other apps using the webcam and try again")
             continue    
     cam.release()
     cv2.destroyAllWindows()
