@@ -49,13 +49,21 @@ def get_accuracy(original,detected):
             fp+=1
         elif original[i]==1 and detected[i] ==1:
             tp+=1
-    if tp>0 and tn>0 and fp>0 and fn >0:
-        accuracy = (tp+tn)/(tp+fp+fn+tn)
-        precision = tp/(tp+fp)
-        recall = tp/(tp+fn)
-        f1score = 2*(precision*recall)/(precision+recall)
-        print(f"Accuracy = {accuracy}\n Precision = {precision}\n Recall = {recall}\n F1Score = {f1score}")
-        return accuracy,precision,recall,f1score
-    else:
-        return 0,0,0,0
+    
+    # if tp>0 and tn>0 and fp>0 and fn >0:
+    #     accuracy = (tp+tn)/(tp+fp+fn+tn)
+    #     precision = tp/(tp+fp)
+    #     recall = tp/(tp+fn)
+    #     f1score = 2*(precision*recall)/(precision+recall)
+    #     print(f"Accuracy = {accuracy}\n Precision = {precision}\n Recall = {recall}\n F1Score = {f1score}")
+    #     return accuracy,precision,recall,f1score
+    # else:
+    #     return 0,0,0,0
+
+    accuracy = (tp+tn)/(tp+fp+fn+tn)
+    precision = tp/(tp+fp)
+    recall = tp/(tp+fn)
+    f1score = 2*(precision*recall)/(precision+recall)
+    print(f"Accuracy = {accuracy}\n Precision = {precision}\n Recall = {recall}\n F1Score = {f1score}")
+    return accuracy,precision,recall,f1score
     

@@ -51,7 +51,7 @@ def plot_main(frames,segment_time,fps_assumed):
         plt.subplot(7,1,i+1)  
         plt.step(cheat_list[i],'r')
         plt.yticks([0,1]) 
-        plt.xticks(seg) 
+        #plt.xticks(seg) 
         plt.title(titles_list[i])
         if(i==3):
             plt.ylabel("cheat status")
@@ -84,7 +84,7 @@ def plot_segments(segments,segment_time,original=[]):
     plt.step(detected,'r')
     plt.step(original,'b')
     plt.yticks([0,1])
-    plt.xticks(x)
+    #plt.xticks(x)
     plt.xlabel('Time Segments')
     plt.ylabel('Cheating Suspected')
     stats = "Total Time : " + str(len(segments)*segment_time) + " seconds\n" + "Cheating Suspected for : " + str(n*segment_time) + " seconds"
