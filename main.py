@@ -24,7 +24,7 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 pTime = [0]
 fps_assumed = 5
 segment_time = 5
-input_dir = 0
+input_dir = 'dataset/abhi.avi'
 # Register User
 frmodel = loadFaceNet512Model()
 input_embeddings, input_im_list = register_user(frmodel,input_dir)
@@ -69,10 +69,10 @@ if __name__ == "__main__":
     plot_segments(segments,segment_time,[])
 
     # Uncomment for Testing
-    # length_of_video = 306
-    # fps = 15
-    # data_path = './filename.txt'
-    # original = testing_accuracy(data_path,segment_time*fps_assumed)
-    # plot_segments(segments,segment_time,original)
-    # detected = detected_cheating(segments)
-    # acc,prec,recl,f1 = get_accuracy(original,detected)
+    length_of_video = 306
+    fps = 15
+    data_path = 'dataset/abhi.txt'
+    original = testing_accuracy(data_path,segment_time*fps_assumed)
+    plot_segments(segments,segment_time,original)
+    detected = detected_cheating(segments)
+    acc,prec,recl,f1 = get_accuracy(original,detected)
