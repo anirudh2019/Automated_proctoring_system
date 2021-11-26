@@ -20,7 +20,7 @@ def testing_accuracy(data_path,segment_size=25):
     fps,video_length,input_text = input_data(data_path)
     total_frames = fps*video_length
     no_of_segments = total_frames/segment_size
-    original = [0]*int(no_of_segments)
+    original = [0]*int(no_of_segments+1)
 
     for i in range(len(input_text)):
         a=input_text[i][0]/segment_size #START FRAME  
