@@ -12,7 +12,7 @@
   6. Student spoofing his presence
 
 ### Results:
-Our proctoring system has scored 95.3% accuracy whereas basline accuracy is 93%.
+Our proctoring system has scored 95.3% accuracy whereas basline accuracy is 93.4%.
 <br>A glimpse of live proctoring on test dataset:<br><br>
 <p align="center">
   <img src="./assets/live.png" alt="live.jpg">
