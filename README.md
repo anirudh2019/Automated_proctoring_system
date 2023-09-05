@@ -1,4 +1,4 @@
-# Robust Automated Proctoring System for Online Examinations
+# Robust Automated Live Proctoring System for Online Examinations
 
 - This application proctors examinee continuously throughout the exam using webcam and detects several methods of cheating with high accuracy and makes report of their cheating behaviour. 
 - It has modules like Face detection, Face recognition, Face landmarks detection, Head pose estimation, Face spoof detection and Lips tracker.
